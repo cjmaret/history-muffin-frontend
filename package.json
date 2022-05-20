@@ -1,7 +1,7 @@
 {
-  "name": "sick-fits-frontend",
+  "name": "history-muffin-frontend",
   "version": "2.0.0",
-  "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
+  "description": "An e-commerce store demo frontend",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
