@@ -9,5 +9,4 @@ variables.env
 *.env
 .keystone
 *.db
-__tests__
 .npm
