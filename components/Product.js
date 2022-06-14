@@ -14,6 +14,7 @@ export default function Product({ product }) {
     return user?.products.some((userProduct) => userProduct.id === product.id);
   }
 
+  console.log(product)
   return (
     <ItemStyles>
       <img
