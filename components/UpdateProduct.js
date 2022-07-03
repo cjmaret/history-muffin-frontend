@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/client';
+import Router from 'next/router';
 import DisplayError from './ErrorMessage';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
@@ -16,8 +17,16 @@ const SINGLE_PRODUCT_QUERY = gql`
 `;
 
 const UPDATE_PRODUCT_MUTATION = gql`
-  mutation UPDATE_PRODUCT_MUTATION($id: ID!, $name: String, $description: String, $price: Int) {
-    updateProduct(id: $id, data: { name: $name, description: $description, price: $price }) {
+  mutation UPDATE_PRODUCT_MUTATION(
+    $id: ID!
+    $name: String
+    $description: String
+    $price: Int
+  ) {
+    updateProduct(
+      id: $id
+      data: { name: $name, description: $description, price: $price }
+    ) {
       id
       name
       description
@@ -35,12 +44,21 @@ export default function UpdateProduct({ id }) {
 
   // 2. we need to get the mutation to update the product
 
-  const [updateProduct, { data: updateData, error: updateError, loading: updateLoading }] =
-    useMutation(UPDATE_PRODUCT_MUTATION);
+  const [
+    updateProduct,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
   // 2.5 create some state for the form inputs
 
-  const { inputs, handleChange, resetForm, clearForm } = useForm(data?.Product);
+  const { inputs, handleChange, clearForm, resetForm } = useForm(
+    data?.Product || {
+      name: '',
+      description: '',
+      price: 0,
+    }
+  );
+  console.log(inputs);
 
   if (loading) return <p>Loading...</p>;
   // 3. we need the form to handle the udpates
@@ -58,13 +76,11 @@ export default function UpdateProduct({ id }) {
         }).catch((error) => console.error);
 
         console.log(res);
-        // // Submit the input fields to the backend;
-        // const res = await createProduct();
-        // clearForm();
-        // // Go to that product's page
-        // Router.push({
-        //   pathname: `/product/${res.data.createProduct.id}`,
-        // });
+        clearForm();
+        // Go to that product's page
+        Router.push({
+          pathname: `/product/${res.data?.updateProduct.id}`,
+        });
       }}>
       <DisplayError error={error || updateError} />
       <fieldset disabled={updateLoading} aria-busy={loading}>
@@ -80,7 +96,7 @@ export default function UpdateProduct({ id }) {
           />
         </label>
         <label htmlFor="price">
-          Name
+          Price
           <input
             type="number"
             id="price"
@@ -88,10 +104,11 @@ export default function UpdateProduct({ id }) {
             placeholder="Price"
             value={inputs.price}
             onChange={handleChange}
+            steps="any"
           />
         </label>
         <label htmlFor="description">
-          Name
+          Description
           <textarea
             type="textarea"
             id="description"

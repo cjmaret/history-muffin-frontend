@@ -1,11 +1,11 @@
-import Link from "next/link";
-import ItemStyles from "./styles/ItemStyles";
-import Title from "./styles/Title";
-import PriceTag from "./styles/PriceTag";
-import formatMoney from "../lib/formatMoney";
-import DeleteProduct from "./DeleteProduct";
-import AddToCart from "./AddToCart";
-import { useUser } from "./User";
+import Link from 'next/link';
+import ItemStyles from './styles/ItemStyles';
+import Title from './styles/Title';
+import PriceTag from './styles/PriceTag';
+import { formatCentsToDollars } from '../lib/formatMoney';
+import DeleteProduct from './DeleteProduct';
+import AddToCart from './AddToCart';
+import { useUser } from './User';
 
 export default function Product({ product }) {
   const user = useUser();
@@ -23,29 +23,27 @@ export default function Product({ product }) {
       <Title>
         <Link href={`/product/${product.id}`}>{product.name}</Link>
       </Title>
-      <PriceTag>{formatMoney(product.price)}</PriceTag>
+      <PriceTag>{formatCentsToDollars(product.price)}</PriceTag>
       <p>{product.description}</p>
       <div className="buttonList">
         <Link
           href={
             doesUserOwnProduct()
               ? {
-                  pathname: "/update",
+                  pathname: '/update',
                   query: {
                     id: product.id,
                   },
                 }
-              : { pathname: "" }
-          }
-        >
+              : { pathname: '' }
+          }>
           <a
             href=""
             onClick={() =>
               doesUserOwnProduct()
-                ? ""
+                ? ''
                 : alert(`Sorry, you can't edit products you don't own`)
-            }
-          >
+            }>
             Edit
           </a>
         </Link>

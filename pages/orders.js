@@ -4,7 +4,7 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Link from 'next/link';
 import ErrorMessage from '../components/ErrorMessage';
-import formatMoney from '../lib/formatMoney';
+import { formatCentsToDollars } from '../lib/formatMoney';
 import OrderItemStyles from '../components/styles/OrderItemStyles';
 
 const USER_ORDERS_QUERY = gql`
@@ -72,7 +72,7 @@ export default function OrdersPage() {
                     {order.items.length} Product
                     {order.items.length === 1 ? '' : 's'}
                   </p>
-                  <p>{formatMoney(order.total)}</p>
+                  <p>{formatCentsToDollars(order.total)}</p>
                 </div>
                 <div className="images">
                   {order.items.map((item) => (

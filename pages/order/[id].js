@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import ErrorMessage from '../../components/ErrorMessage';
 import OrderStyles from '../../components/styles/OrderStyles';
-import formatMoney from '../../lib/formatMoney';
+import { formatCentsToDollars } from '../../lib/formatMoney';
 
 const SINGLE_ORDER_QUERY = gql`
   query SINGLE_ORDER_QUERY($id: ID!) {
@@ -52,7 +52,7 @@ export default function SingleOrderPage({ query }) {
       </p>
       <p>
         <span>Order Total:</span>
-        <span>{formatMoney(order.total)}</span>
+        <span>{formatCentsToDollars(order.total)}</span>
       </p>
       <p>
         <span>Item Count:</span>
@@ -65,8 +65,10 @@ export default function SingleOrderPage({ query }) {
             <div className="item-details">
               <h2>{item.name}</h2>
               <p>Qty: {item.quantity}</p>
-              <p>Each: {formatMoney(item.price)}</p>
-              <p>Subtotal: {formatMoney(item.price * item.quantity)}</p>
+              <p>Each: {formatCentsToDollars(item.price)}</p>
+              <p>
+                Subtotal: {formatCentsToDollars(item.price * item.quantity)}
+              </p>
               <p>{item.description}</p>
             </div>
           </div>

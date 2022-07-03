@@ -1,12 +1,13 @@
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/client";
-import Head from "next/head";
-import styled from "styled-components";
-import DisplayError from "./ErrorMessage";
-import Link from "next/link";
-import AddToCart from "./AddToCart";
-import DeleteProduct from "./DeleteProduct";
-import { useUser } from "./User";
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/client';
+import Head from 'next/head';
+import styled from 'styled-components';
+import DisplayError from './ErrorMessage';
+import Link from 'next/link';
+import AddToCart from './AddToCart';
+import DeleteProduct from './DeleteProduct';
+import { useUser } from './User';
+import { formatCentsToDollars } from '../lib/formatMoney';
 
 const ProductStyles = styled.div`
   display: flex;
@@ -108,26 +109,25 @@ export default function SingleProduct({ id }) {
       <div className="details">
         <h2>{Product.name}</h2>
         <p>{Product.description}</p>
+        <p>Price: {formatCentsToDollars(Product.price)}</p>
         <div className="buttonList">
           <Link
             href={
               doesUserOwnProduct()
                 ? {
-                    pathname: "/update",
+                    pathname: '/update',
                     query: {
                       id: Product.id,
                     },
                   }
-                : { pathname: "" }
-            }
-          >
+                : { pathname: '' }
+            }>
             <a
               onClick={() =>
                 doesUserOwnProduct()
-                  ? ""
+                  ? ''
                   : alert(`Sorry, you can't edit products you don't own`)
-              }
-            >
+              }>
               Edit
             </a>
           </Link>

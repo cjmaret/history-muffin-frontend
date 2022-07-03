@@ -5,6 +5,7 @@ import useForm from '../lib/useForm';
 import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
+import { formatDollarsToCents } from '../lib/formatMoney';
 
 export const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -42,7 +43,7 @@ export default function CreateProduct() {
   const [createProduct, { loading, error, data }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
-      variables: inputs,
+      variables: { ...inputs, price: formatDollarsToCents(inputs.price) },
       refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
@@ -58,20 +59,9 @@ export default function CreateProduct() {
         Router.push({
           pathname: `/product/${res.data.createProduct.id}`,
         });
-      }}
-    >
+      }}>
       <DisplayError error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
-        <label htmlFor="image">
-          Name
-          <input
-            required
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleChange}
-          />
-        </label>
         <label htmlFor="name">
           Name
           <input
@@ -80,6 +70,16 @@ export default function CreateProduct() {
             name="name"
             placeholder="Name"
             value={inputs.name}
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor="image">
+          Image
+          <input
+            required
+            type="file"
+            id="image"
+            name="image"
             onChange={handleChange}
           />
         </label>
@@ -92,6 +92,7 @@ export default function CreateProduct() {
             placeholder="Price"
             value={inputs.price}
             onChange={handleChange}
+            step=".01"
           />
         </label>
         <label htmlFor="description">

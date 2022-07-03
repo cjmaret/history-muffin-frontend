@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import CartStyles from "./styles/CartStyles";
-import CloseButton from "./styles/CloseButton";
-import { useUser } from "./User";
-import Supreme from "./styles/Supreme";
-import formatMoney from "../lib/formatMoney";
-import calcTotalPrice from "../lib/calcTotalPrice";
-import { useCart } from "../lib/cartState";
-import RemoveFromCart from "./RemoveFromCart";
-import { Checkout } from "./Checkout";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import CartStyles from './styles/CartStyles';
+import CloseButton from './styles/CloseButton';
+import { useUser } from './User';
+import Supreme from './styles/Supreme';
+import { formatCentsToDollars } from '../lib/formatMoney';
+import calcTotalPrice from '../lib/calcTotalPrice';
+import { useCart } from '../lib/cartState';
+import RemoveFromCart from './RemoveFromCart';
+import { Checkout } from './Checkout';
+import { useEffect } from 'react';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -36,9 +36,9 @@ function CartItem({ cartItem }) {
       />
       <div>
         <h3>{product.name}</h3>
-        <p>{formatMoney(product.price * cartItem.quantity)}</p>
+        <p>{formatCentsToDollars(product.price * cartItem.quantity)}</p>
         <em>
-          {cartItem.quantity} &times; {formatMoney(product.price)} each
+          {cartItem.quantity} &times; {formatCentsToDollars(product.price)} each
         </em>
       </div>
       <RemoveFromCart id={cartItem.id} />
@@ -51,14 +51,14 @@ export default function Cart() {
   const { cartOpen, closeCart } = useCart();
 
   useEffect(() => {
-    const cart = document.querySelector(".cart-styles");
+    const cart = document.querySelector('.cart-styles');
     function closeCartOnClickOutside(e) {
       if (cartOpen && !cart.contains(e.target)) {
         closeCart();
       }
     }
-    document.addEventListener("click", closeCartOnClickOutside);
-    return () => document.removeEventListener("click", closeCartOnClickOutside);
+    document.addEventListener('click', closeCartOnClickOutside);
+    return () => document.removeEventListener('click', closeCartOnClickOutside);
   });
 
   if (!me) return null;
@@ -74,7 +74,7 @@ export default function Cart() {
         ))}
       </ul>
       <footer>
-        <p>{formatMoney(calcTotalPrice(me.cart))}</p>
+        <p>{formatCentsToDollars(calcTotalPrice(me.cart))}</p>
         <Checkout />
       </footer>
     </CartStyles>
