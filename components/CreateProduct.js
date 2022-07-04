@@ -48,6 +48,8 @@ export default function CreateProduct() {
     }
   );
 
+  console.log(inputs)
+
   return (
     <Form
       onSubmit={async (e) => {

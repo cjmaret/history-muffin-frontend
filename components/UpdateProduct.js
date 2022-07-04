@@ -4,6 +4,7 @@ import Router from 'next/router';
 import DisplayError from './ErrorMessage';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
+import { formatCentsToDollars, formatDollarsToCents } from '../lib/formatMoney';
 
 const SINGLE_PRODUCT_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
@@ -21,7 +22,7 @@ const UPDATE_PRODUCT_MUTATION = gql`
     $id: ID!
     $name: String
     $description: String
-    $price: Int
+    $price: Int!
   ) {
     updateProduct(
       id: $id
@@ -42,6 +43,19 @@ export default function UpdateProduct({ id }) {
     variables: { id },
   });
 
+  const productData = {
+    ...data?.Product,
+    price: formatCentsToDollars(data.Product.price).substring(1),
+  };
+
+  const { inputs, handleChange, clearForm, resetForm } = useForm(
+    productData || {
+      name: '',
+      description: '',
+      price: 0,
+    }
+  );
+
   // 2. we need to get the mutation to update the product
 
   const [
@@ -50,15 +64,6 @@ export default function UpdateProduct({ id }) {
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
   // 2.5 create some state for the form inputs
-
-  const { inputs, handleChange, clearForm, resetForm } = useForm(
-    data?.Product || {
-      name: '',
-      description: '',
-      price: 0,
-    }
-  );
-  console.log(inputs);
 
   if (loading) return <p>Loading...</p>;
   // 3. we need the form to handle the udpates
@@ -71,16 +76,18 @@ export default function UpdateProduct({ id }) {
             id,
             name: inputs.name,
             description: inputs.description,
-            price: inputs.price,
+            price: formatDollarsToCents(inputs.price),
           },
-        }).catch((error) => console.error);
-
-        console.log(res);
-        clearForm();
-        // Go to that product's page
-        Router.push({
-          pathname: `/product/${res.data?.updateProduct.id}`,
-        });
+        })
+          .then((res) => {
+            console.log(res);
+            clearForm();
+            // Go to that product's page
+            Router.push({
+              pathname: `/product/${res.data?.updateProduct.id}`,
+            });
+          })
+          .catch((error) => console.error);
       }}>
       <DisplayError error={error || updateError} />
       <fieldset disabled={updateLoading} aria-busy={loading}>
