@@ -4,6 +4,7 @@ import Router from 'next/router';
 import DisplayError from './ErrorMessage';
 import useForm from '../lib/useForm';
 import Form from './styles/Form';
+import { useState } from 'react';
 import { formatCentsToDollars, formatDollarsToCents } from '../lib/formatMoney';
 
 const SINGLE_PRODUCT_QUERY = gql`
@@ -37,17 +38,21 @@ const UPDATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function UpdateProduct({ id }) {
-  // 1. we need to get the existing product
+  const [decimalError, setDecimalError] = useState({
+    message: '',
+  });
 
+  // get existing product
   const { data, error, loading } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: { id },
   });
 
   const productData = {
     ...data?.Product,
-    price: formatCentsToDollars(data.Product.price).substring(1),
+    price: formatCentsToDollars(data?.Product.price).substring(1),
   };
 
+  //insert into form
   const { inputs, handleChange, clearForm, resetForm } = useForm(
     productData || {
       name: '',
@@ -56,17 +61,30 @@ export default function UpdateProduct({ id }) {
     }
   );
 
-  // 2. we need to get the mutation to update the product
-
+  // update product mutation
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
-  // 2.5 create some state for the form inputs
-
   if (loading) return <p>Loading...</p>;
-  // 3. we need the form to handle the udpates
+
+  // prevent more than 2 decimal places
+  function validateDecimal(e) {
+    let number = e.target.value;
+    if (number.split('.')[1].length > 2) {
+      setDecimalError({ message: 'Please limit price to 2 decimal places' });
+    } else {
+      setDecimalError({ message: '' });
+    }
+  }
+
+  // validate decimal separately outside of handleChange function
+  function handlePriceChange(e) {
+    handleChange(e);
+    validateDecimal(e);
+  }
+
   return (
     <Form
       onSubmit={async (e) => {
@@ -89,7 +107,7 @@ export default function UpdateProduct({ id }) {
           })
           .catch((error) => console.error);
       }}>
-      <DisplayError error={error || updateError} />
+      <DisplayError error={error || updateError || decimalError} />
       <fieldset disabled={updateLoading} aria-busy={loading}>
         <label htmlFor="name">
           Name
@@ -110,8 +128,7 @@ export default function UpdateProduct({ id }) {
             name="price"
             placeholder="Price"
             value={inputs.price}
-            onChange={handleChange}
-            steps="any"
+            onChange={handlePriceChange}
           />
         </label>
         <label htmlFor="description">
@@ -126,7 +143,9 @@ export default function UpdateProduct({ id }) {
           />
         </label>
 
-        <button type="submit">Update Product</button>
+        <button type="submit" disabled={decimalError.message ? true : false}>
+          Update Product
+        </button>
       </fieldset>
     </Form>
   );

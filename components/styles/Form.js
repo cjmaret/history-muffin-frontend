@@ -45,6 +45,10 @@ const Form = styled.form`
     font-size: 2rem;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
+    &[disabled] {
+      opacity: 0.6;
+      background: gray;
+    }
   }
   fieldset {
     border: 0;
