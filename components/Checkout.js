@@ -91,7 +91,7 @@ function CheckoutForm() {
       },
     });
 
-    // 7. close the cart
+    // 7. close the cart.
 
     closeCart();
 
