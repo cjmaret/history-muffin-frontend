@@ -5,7 +5,6 @@ import { AccountStyles, ProfileImage } from './styles/AccountStyles';
 export default function Account() {
   const user = useUser();
 
-  console.log(user);
   return (
     <AccountStyles>
       <div>

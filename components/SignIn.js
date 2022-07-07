@@ -42,7 +42,6 @@ export default function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await signin();
-    console.log(res);
     resetForm();
     if (res.data.authenticateUserWithPassword.item?.id) {
       Router.push('/products');

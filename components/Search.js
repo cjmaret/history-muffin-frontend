@@ -49,7 +49,6 @@ export default function Search() {
   } = useCombobox({
     items,
     onInputValueChange() {
-      console.log("input change");
       findItemsButChill({
         variables: {
           searchTerm: inputValue,
@@ -57,11 +56,9 @@ export default function Search() {
       });
     },
     onSelectedItemChange({ selectedItem }) {
-      console.log(selectedItem);
       router.push({
         pathname: `/product/${selectedItem.id}`,
       });
-      console.log("selected item change");
     },
     itemToString: (item) => item?.name || "",
   });

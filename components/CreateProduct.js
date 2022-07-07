@@ -6,6 +6,7 @@ import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
 import { formatDollarsToCents } from '../lib/formatMoney';
+import { CURRENT_USER_QUERY, useUser } from './User';
 
 export const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -33,6 +34,7 @@ export const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function CreateProduct() {
+  const user = useUser();
   const { inputs, handleChange, resetForm, clearForm } = useForm({
     image: '',
     name: '',
@@ -44,23 +46,27 @@ export default function CreateProduct() {
     CREATE_PRODUCT_MUTATION,
     {
       variables: { ...inputs, price: formatDollarsToCents(inputs.price) },
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+      refetchQueries: [
+        { query: ALL_PRODUCTS_QUERY },
+        { query: CURRENT_USER_QUERY },
+      ],
     }
   );
-
-  console.log(inputs)
 
   return (
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
         // Submit the input fields to the backend;
-        const res = await createProduct();
-        clearForm();
-        // Go to that product's page
-        Router.push({
-          pathname: `/product/${res.data.createProduct.id}`,
-        });
+        await createProduct()
+          .then((res) => {
+            clearForm();
+            // Go to that product's page
+            Router.push({
+              pathname: `/product/${res.data.createProduct.id}`,
+            });
+          })
+          .catch((err) => console.error(err));
       }}>
       <DisplayError error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
@@ -94,7 +100,6 @@ export default function CreateProduct() {
             placeholder="Price"
             value={inputs.price}
             onChange={handleChange}
-            step=".01"
           />
         </label>
         <label htmlFor="description">

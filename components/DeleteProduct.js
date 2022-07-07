@@ -1,7 +1,7 @@
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
-import Router from "next/router";
-import { useUser } from "./User";
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
+import Router from 'next/router';
+import { useUser } from './User';
 
 const DELETE_PRODUCT_MUTATION = gql`
   mutation DELETE_PRODUCT_MUTATION($id: ID!) {
@@ -17,7 +17,7 @@ function update(cache, payload) {
   cache.evict(cache.identify(payload.data.deleteProduct));
 }
 
-export default function DeleteProduct({ id, children }) {
+export default function DeleteProduct({ id, setProductDeleted, children }) {
   const user = useUser();
 
   function doesUserOwnProduct() {
@@ -34,13 +34,24 @@ export default function DeleteProduct({ id, children }) {
     }
   );
 
+  if (error) {
+    console.log(error);
+  }
+
   function handleClick() {
     if (doesUserOwnProduct()) {
-      if (confirm("Are you sure?")) {
-        deleteProduct().catch((err) => alert(err.message));
+      if (confirm('Are you sure?')) {
+        deleteProduct()
+          .then(() => {
+            setProductDeleted(true);
+            Router.push({
+              pathname: `/products`,
+            });
+          })
+          .catch((err) => alert(err.message));
       }
     } else {
-      alert(`Sorry, you can't delete products you don't own`)
+      alert(`Sorry, you can't delete products you don't own`);
     }
   }
 

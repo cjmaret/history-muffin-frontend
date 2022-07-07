@@ -8,6 +8,7 @@ import AddToCart from './AddToCart';
 import DeleteProduct from './DeleteProduct';
 import { useUser } from './User';
 import { formatCentsToDollars } from '../lib/formatMoney';
+import { useState } from 'react';
 
 const ProductStyles = styled.div`
   display: flex;
@@ -84,6 +85,8 @@ const SINGLE_ITEM_QUERY = gql`
 
 export default function SingleProduct({ id }) {
   const user = useUser();
+  const [productDeleted, setProductDeleted] = useState(false);
+
   const { data, loading, error } = useQuery(SINGLE_ITEM_QUERY, {
     variables: {
       id,
@@ -95,7 +98,8 @@ export default function SingleProduct({ id }) {
   }
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <DisplayError error={error} />;
+  if (error && productDeleted) return <></>;
+  if (error && !productDeleted) return <DisplayError error={error} />;
   const { Product } = data;
   return (
     <ProductStyles data-testid="singleProduct">
@@ -132,7 +136,9 @@ export default function SingleProduct({ id }) {
             </a>
           </Link>
           <AddToCart id={Product.id} />
-          <DeleteProduct id={Product.id}>Delete</DeleteProduct>
+          <DeleteProduct id={Product.id} setProductDeleted={setProductDeleted}>
+            Delete
+          </DeleteProduct>
         </div>
       </div>
     </ProductStyles>
