@@ -27,6 +27,9 @@ const Item = styled.div`
     flex-grow: 1;
     padding: 1vw 1rem;
     font-size: calc(0.5rem + 1vw);
+    @media (min-width: 1080px) {
+      font-size: 16px;
+    }
   }
   .buttonList {
     display: grid;

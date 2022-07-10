@@ -5,11 +5,11 @@ const PaginationStyles = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
   border: 1px solid var(--lightGray);
   border-radius: 10px;
   white-space: nowrap;
-  font-size: calc(.5rem + 1.5vw);
+  font-size: calc(0.5rem + 1.5vw);
   width: calc(100px + 40vw);
   a[aria-disabled='true'] {
     color: grey;
@@ -17,6 +17,8 @@ const PaginationStyles = styled.div`
   }
   @media (min-width: 1080px) {
     width: 530px;
+    font-size: 21px;
+    margin: 2rem 0;
   }
 `;
 

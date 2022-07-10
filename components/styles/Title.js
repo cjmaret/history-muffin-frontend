@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Title = styled.h3`
   position: absolute;
-  bottom: calc(60px + 0.7vw);
+  bottom: calc(60px + 3vw);
   left: 50%;
   margin: 0 0.5rem;
   text-align: center;
@@ -14,7 +14,7 @@ const Title = styled.h3`
   color: white;
   line-height: 1.2;
   @media (min-width: 1080px) {
-    bottom: 69px;
+    bottom: 93px;
   }
   a {
     background: var(--blue);
