@@ -7,35 +7,44 @@ const Item = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 500px;
   img {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
   }
+  .image-container {
+    height: calc(46vw);
+    @media (min-width: 1080px) {
+      height: 500px;
+    }
+  }
   p {
-    line-height: 2;
+    margin: 0.5rem 0;
+    line-height: 1.6;
     font-weight: 300;
     flex-grow: 1;
-    padding: 0 3rem;
-    font-size: 1.5rem;
+    padding: 1vw 1rem;
+    font-size: calc(0.5rem + 1vw);
   }
   .buttonList {
     display: grid;
     width: 100%;
     border-top: 1px solid var(--lightGray);
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
     grid-gap: 1px;
     background: var(--lightGray);
     & > * {
       background: white;
       border: 0;
-      font-size: 1rem;
-      padding: 1rem;
+      font-size: calc(0.5rem + 0.3vw);
+      padding: 0;
+      margin: 0.5rem auto;
     }
-  }
-  @media (max-width: 1080px) {
-    img {
-      height: 100%;
+    a {
+      text-align: center;
+      color: black;
     }
   }
 `;

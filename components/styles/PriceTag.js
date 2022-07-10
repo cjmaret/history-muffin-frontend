@@ -7,11 +7,14 @@ const PriceTag = styled.span`
   font-weight: 600;
   padding: 5px;
   line-height: 1;
-  font-size: 3rem;
+  font-size: calc(4vw);
   display: inline-block;
   position: absolute;
   top: -3px;
   right: -3px;
+  @media(min-width: 1080px) {
+    font-size: 43px;
+  }
 `;
 
 export default PriceTag;

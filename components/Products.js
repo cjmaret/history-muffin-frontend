@@ -23,12 +23,15 @@ export const ALL_PRODUCTS_QUERY = gql`
 
 const ProductsListStyles = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 60px;
-  @media (max-width: 850px) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: calc(5vw);
+  /* @media (max-width: 850px) {
     grid-template-columns: 1fr;
     width: 85%;
     margin: auto;
+  } */
+  @media (min-width: 1080px) {
+    grid-gap: 54px;
   }
 `;
 
@@ -43,12 +46,10 @@ export default function Products({ page }) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
-    <div>
-      <ProductsListStyles>
-        {data.allProducts.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </ProductsListStyles>
-    </div>
+    <ProductsListStyles>
+      {data.allProducts.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </ProductsListStyles>
   );
 }

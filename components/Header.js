@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Nav from './Nav';
 import Cart from './Cart';
 import Search from './Search';
+import { useEffect, useState } from 'react';
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -43,6 +44,18 @@ const HeaderStyles = styled.header`
   }
 `;
 
+// Only mount `Search` component on the client to stop infinite re-renders
+function ClientOnly({ children, ...delegated }) {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  if (!hasMounted) {
+    return null;
+  }
+  return <div {...delegated}>{children}</div>;
+}
+
 export default function Header() {
   return (
     <HeaderStyles>
@@ -54,7 +67,9 @@ export default function Header() {
       </div>
 
       <div className="sub-bar">
-        <Search />
+        <ClientOnly>
+          <Search />
+        </ClientOnly>
       </div>
       <Cart />
     </HeaderStyles>

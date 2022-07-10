@@ -65,7 +65,7 @@ export default function Search() {
 
   return (
     <SearchStyles>
-      <div {...getComboboxProps()}>
+      <div {...getComboboxProps()} className="search-input-container">
         <input
           {...getInputProps({
             type: "search",

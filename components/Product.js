@@ -16,10 +16,12 @@ export default function Product({ product }) {
 
   return (
     <ItemStyles>
-      <img
-        src={product?.photo?.image?.publicUrlTransformed}
-        alt={product.name}
-      />
+      <div className="image-container">
+        <img
+          src={product?.photo?.image?.publicUrlTransformed}
+          alt={product.name}
+        />
+      </div>
       <Title>
         <Link href={`/product/${product.id}`}>{product.name}</Link>
       </Title>
