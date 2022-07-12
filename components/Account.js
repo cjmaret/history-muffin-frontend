@@ -7,12 +7,12 @@ export default function Account() {
 
   return (
     <AccountStyles>
-      <div>
+      <div className="account-image">
         <ProfileImage src={UserIcon} alt="" />
       </div>
       <div>
-        <h2>Name: {user?.name}</h2>
-        <h2>Email: {user?.email}</h2>
+        <h2 className="account-text">Name: {user?.name}</h2>
+        <h2 className="account-text">Email: {user?.email}</h2>
       </div>
     </AccountStyles>
   );
