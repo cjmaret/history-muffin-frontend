@@ -9,6 +9,13 @@ const Item = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 500px;
+  .title-image-container {
+    position: relative;
+    margin-bottom: 2vw;
+    @media (min-width: 1080px) {
+      margin-bottom: 22px;
+    }
+  }
   img {
     width: 100%;
     height: 100%;
@@ -29,6 +36,7 @@ const Item = styled.div`
     font-size: calc(0.5rem + 1vw);
     @media (min-width: 1080px) {
       font-size: 16px;
+      padding: 1.8rem 1rem;
     }
   }
   .buttonList {
@@ -37,13 +45,21 @@ const Item = styled.div`
     border-top: 1px solid var(--lightGray);
     grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
     grid-gap: 1px;
-    background: var(--lightGray);
     & > * {
       background: white;
       border: 0;
-      font-size: calc(0.5rem + 0.3vw);
+      width: 100%;
+      border-right: 1px solid var(--lightGray);
+      font-size: calc(0.3rem + 0.8vw);
       padding: 0;
       margin: 0.5rem auto;
+      padding: 0 2px;
+      &:last-child {
+        border-right: none;
+      }
+      @media (min-width: 1080px) {
+        font-size: 12px;
+      }
     }
     a {
       text-align: center;

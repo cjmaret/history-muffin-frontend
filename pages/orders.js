@@ -34,11 +34,11 @@ const USER_ORDERS_QUERY = gql`
 
 const OrderUl = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(1, minmax(100px, 1fr));
   grid-gap: 4rem;
   padding: 0;
-  @media (max-width: 450px) {
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  @media (min-width: 550px) {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 `;
 

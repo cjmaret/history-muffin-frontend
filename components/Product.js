@@ -16,15 +16,17 @@ export default function Product({ product }) {
 
   return (
     <ItemStyles>
-      <div className="image-container">
-        <img
-          src={product?.photo?.image?.publicUrlTransformed}
-          alt={product.name}
-        />
+      <div className="title-image-container">
+        <div className="image-container">
+          <img
+            src={product?.photo?.image?.publicUrlTransformed}
+            alt={product.name}
+          />
+        </div>
+        <Title>
+          <Link href={`/product/${product.id}`}>{product.name}</Link>
+        </Title>
       </div>
-      <Title>
-        <Link href={`/product/${product.id}`}>{product.name}</Link>
-      </Title>
       <PriceTag>{formatCentsToDollars(product.price)}</PriceTag>
       <p>{product.description}</p>
       <div className="buttonList">

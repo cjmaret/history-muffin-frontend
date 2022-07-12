@@ -33,6 +33,13 @@ const OrderItemStyles = styled.li`
       margin: 0;
       background: rgba(0, 0, 0, 0.03);
       padding: 1rem 0;
+      font-size: 3vw;
+      @media (min-width: 550px) {
+        font-size: 1.5vw;
+      }
+      @media (min-width: 1080px) {
+        font-size: 16px;
+      }
     }
     strong {
       display: block;

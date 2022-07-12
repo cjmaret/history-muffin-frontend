@@ -2,19 +2,19 @@ import styled from 'styled-components';
 
 const Title = styled.h3`
   position: absolute;
-  bottom: calc(60px + 3vw);
+  bottom: -5%;
   left: 50%;
   margin: 0 0.5rem;
   text-align: center;
   transform: skew(-5deg) rotate(-1deg) translate(-50%, 0);
-  margin-top: -3rem;
+  /* margin-bottom: 5vw; */
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-overflow: ellipsis;
   color: white;
   line-height: 1.2;
   @media (min-width: 1080px) {
-    bottom: 93px;
+    margin-top: -3rem;
   }
   a {
     background: var(--blue);

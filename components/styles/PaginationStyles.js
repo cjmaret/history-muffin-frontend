@@ -6,7 +6,6 @@ const PaginationStyles = styled.div`
   justify-content: space-around;
   align-items: center;
   margin: 1rem 0;
-  border: 1px solid var(--lightGray);
   border-radius: 10px;
   white-space: nowrap;
   font-size: calc(0.5rem + 1.5vw);

@@ -86,7 +86,6 @@ export const NavStyles = styled.ul`
   }
 
   @media (max-width: 640px) {
-    border: 1px solid red;
     z-index: 500;
     background-color: white;
     position: absolute;
@@ -95,6 +94,8 @@ export const NavStyles = styled.ul`
     align-items: flex-end;
     right: 5%;
     top: 67px;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     a,
     button {
       &:hover,
@@ -107,6 +108,9 @@ export const NavStyles = styled.ul`
           visibility: hidden;
           width: 0%;
         }
+      }
+      &:before {
+        background: none;
       }
     }
   }
