@@ -72,7 +72,7 @@ export default function UpdateProduct({ id }) {
   // prevent more than 2 decimal places
   function validateDecimal(e) {
     let number = e.target.value;
-    if (number.split('.')[1].length > 2) {
+    if (number.split('.')[1]?.length > 2) {
       setDecimalError({ message: 'Please limit price to 2 decimal places' });
     } else {
       setDecimalError({ message: '' });
