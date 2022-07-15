@@ -31,7 +31,7 @@ const ProductStyles = styled.div`
       color: white;
       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
       margin: 15px 15px 15px 0;
-      font-size: 20px;
+      font-size: 15px;
       padding: 5px 15px;
       &:hover {
         cursor: pointer;
@@ -41,7 +41,7 @@ const ProductStyles = styled.div`
   }
   .details {
     & > h2 {
-      margin-bottom: 5px;
+      margin: 10px 0 5px 0;
       font-size: 3.5rem;
     }
     & > p {
@@ -53,15 +53,35 @@ const ProductStyles = styled.div`
     flex-direction: column;
     align-items: center;
     img {
-      width: 90%;
+      width: 100%;
     }
     .buttonList {
       justify-content: center;
     }
   }
   @media (max-width: 450px) {
-    .buttonList > * {
-      font-size: 15px;
+    img {
+      width: 100%;
+    }
+    .details {
+      width: 100%;
+      & > h2 {
+        font-size: 8vw;
+        margin-top: 0;
+        line-height: 1.5;
+      }
+      & > p {
+        font-size: 4vw;
+      }
+    }
+    .buttonList {
+      width: 100%;
+      margin-top: 3vw;
+      justify-content: space-around;
+      & > * {
+        font-size: 3vw;
+        margin: 0;
+      }
     }
   }
 `;

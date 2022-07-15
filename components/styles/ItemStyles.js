@@ -33,7 +33,7 @@ const Item = styled.div`
     font-weight: 300;
     flex-grow: 1;
     padding: 1vw 1rem;
-    font-size: calc(0.5rem + 1vw);
+    font-size: calc(0.3rem + 1vw);
     @media (min-width: 1080px) {
       font-size: 16px;
       padding: 1.8rem 1rem;
