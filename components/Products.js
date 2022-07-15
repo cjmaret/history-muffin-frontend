@@ -25,11 +25,6 @@ const ProductsListStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-gap: calc(5vw);
-  /* @media (max-width: 850px) {
-    grid-template-columns: 1fr;
-    width: 85%;
-    margin: auto;
-  } */
   @media (min-width: 1080px) {
     grid-gap: 54px;
   }

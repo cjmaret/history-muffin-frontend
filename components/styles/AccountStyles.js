@@ -23,7 +23,6 @@ export const AccountStyles = styled.div`
 `;
 
 export const ProfileImage = styled.img`
-  /* max-width: 100px; */
   width: 100%;
   margin: auto;
 `;

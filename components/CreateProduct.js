@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import useForm from '../lib/useForm';
@@ -65,6 +65,7 @@ export default function CreateProduct() {
             Router.push({
               pathname: `/product/${res.data.createProduct.id}`,
             });
+            
           })
           .catch((err) => console.error(err));
       }}>

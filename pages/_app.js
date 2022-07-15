@@ -5,7 +5,7 @@ import Page from '../components/Page';
 import withData from '../lib/withData';
 import { CartStateProvider } from '../lib/cartState';
 
-// TODO swap
+
 import 'nprogress/nprogress.css';
 import '../components/styles/nprogress.css';
 

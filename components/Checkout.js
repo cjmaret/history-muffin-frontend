@@ -54,35 +54,25 @@ function CheckoutForm() {
     e.preventDefault();
     setLoading(true);
 
-    // 2. start the page transition
     nProgress.start();
 
-    // 3. create the payment method via stripe (Token comes back here if successful)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
 
-    console.log(paymentMethod);
-
-    // 4. handle any errors from stripe
     if (error) {
       setError(error);
       nProgress.done();
-      return; // stops the checkout from happening
+      return;
     }
 
-    // 5. send the token from step 4 to our keystone server, via a custom mutation
     const order = await checkout({
       variables: {
         token: paymentMethod.id,
       },
     });
 
-    console.log('finished order!');
-    console.log(order);
-
-    // 6. change the page to view the order
 
     router.push({
       pathname: `/order/[id]`,
@@ -91,11 +81,8 @@ function CheckoutForm() {
       },
     });
 
-    // 7. close the cart.
-
     closeCart();
 
-    // 8. turn the loader off
     setLoading(false);
     nProgress.done();
   }

@@ -22,7 +22,7 @@ export default function RequestReset() {
     REQUEST_RESET_MUTATION,
     {
       variables: inputs,
-      // refetchQueries: [{ query: CURRENT_USER_QUERY }],
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
     }
   );
 
@@ -31,11 +31,6 @@ export default function RequestReset() {
     const res = await signup().catch(console.error);
     resetForm();
   }
-
-  // const error =
-  //   data?.authenticateUserWithPassword?.__typename === 'UserAuthenticationWithPasswordFailure'
-  //     ? data?.authenticateUserWithPassword
-  //     : undefined;
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>

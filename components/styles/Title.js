@@ -7,7 +7,6 @@ const Title = styled.h3`
   margin: 0 0.5rem;
   text-align: center;
   transform: skew(-5deg) rotate(-1deg) translate(-50%, 0);
-  /* margin-bottom: 5vw; */
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -24,7 +23,6 @@ const Title = styled.h3`
     text-align: center;
     color: white;
     padding: 0 0.5rem;
-    /* white-space: nowrap; */
     @media (min-width: 1080px) {
       font-size: 49px;
     }

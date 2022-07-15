@@ -28,7 +28,7 @@ export default function SignUp() {
 
   const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
-    // refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   async function handleSubmit(e) {
@@ -36,11 +36,6 @@ export default function SignUp() {
     const res = await signup().catch(console.error);
     resetForm();
   }
-
-  // const error =
-  //   data?.authenticateUserWithPassword?.__typename === 'UserAuthenticationWithPasswordFailure'
-  //     ? data?.authenticateUserWithPassword
-  //     : undefined;
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
