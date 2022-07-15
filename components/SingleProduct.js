@@ -46,7 +46,7 @@ const ProductStyles = styled.div`
     }
     & > p {
       margin: 5px 0 5px 0;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
   }
   @media (max-width: 740px) {
@@ -57,6 +57,11 @@ const ProductStyles = styled.div`
     }
     .buttonList {
       justify-content: center;
+    }
+    .details {
+      & > p {
+        font-size: 3vw;
+      }
     }
   }
   @media (max-width: 450px) {
@@ -69,9 +74,6 @@ const ProductStyles = styled.div`
         font-size: 8vw;
         margin-top: 0;
         line-height: 1.5;
-      }
-      & > p {
-        font-size: 4vw;
       }
     }
     .buttonList {
