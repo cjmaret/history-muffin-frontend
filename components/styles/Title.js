@@ -12,7 +12,7 @@ const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
   color: white;
-  line-height: 1.2;
+  line-height: .7;
   @media (min-width: 1080px) {
     margin-top: -3rem;
   }
@@ -20,7 +20,7 @@ const Title = styled.h3`
     background: var(--blue);
     display: inline;
     line-height: 1.3;
-    font-size: 4.5vw;
+    font-size: calc(0.1rem + 4vw);
     text-align: center;
     color: white;
     padding: 0 0.5rem;
