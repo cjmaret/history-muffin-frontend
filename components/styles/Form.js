@@ -17,9 +17,12 @@ const Form = styled.form`
   background: rgba(0, 0, 0, 0.02);
   border: 5px solid white;
   padding: 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 1.5;
   font-weight: 600;
+  @media (min-width: 500px) {
+    font-size: 1.5rem;
+  }
   label {
     display: block;
     margin-bottom: 1rem;
@@ -42,9 +45,12 @@ const Form = styled.form`
     background: var(--blue);
     color: white;
     border: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
+    @media (min-width: 500px) {
+      font-size: 2rem;
+    }
     &[disabled] {
       opacity: 0.6;
       background: gray;

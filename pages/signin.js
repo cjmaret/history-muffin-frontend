@@ -7,7 +7,11 @@ const GridStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 2rem;
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 `;
+
 export default function SignInPage() {
   return (
     <GridStyles>
