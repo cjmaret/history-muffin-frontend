@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Product from './Product';
 import { perPage } from '../config';
+import { useEffect } from 'react';
 
 export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
@@ -29,6 +30,7 @@ const ProductsListStyles = styled.div`
     grid-gap: 54px;
   }
 `;
+
 
 export default function Products({ page }) {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {

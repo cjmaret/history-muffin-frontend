@@ -6,9 +6,11 @@ import { formatCentsToDollars } from '../lib/formatMoney';
 import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
 import { useUser } from './User';
+import { useState } from 'react';
 
 export default function Product({ product }) {
   const user = useUser();
+  const [productDeleted, setProductDeleted] = useState(false);
 
   function doesUserOwnProduct() {
     return user?.products.some((userProduct) => userProduct.id === product.id);
@@ -52,7 +54,9 @@ export default function Product({ product }) {
           </a>
         </Link>
         <AddToCart id={product.id} />
-        <DeleteProduct id={product.id}>Delete</DeleteProduct>
+        <DeleteProduct id={product.id} setProductDeleted={setProductDeleted}>
+          Delete
+        </DeleteProduct>
       </div>
     </ItemStyles>
   );
