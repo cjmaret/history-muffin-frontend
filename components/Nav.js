@@ -32,8 +32,6 @@ export default function Nav({
     return () => window.removeEventListener('resize', getWindowWidth);
   });
 
-  console.log(isMenuOpen);
-
   return (
     <>
       <NavStyles isMenuOpen={isMenuOpen} mobileMenu={mobileMenu} ref={menuRef}>
