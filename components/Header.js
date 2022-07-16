@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Nav from './Nav';
 import Cart from './Cart';
 import Search from './Search';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -57,13 +57,41 @@ function ClientOnly({ children, ...delegated }) {
 }
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef();
+  const menuIconRef = useRef();
+
+  // close menu on click outside
+  useEffect(() => {
+    function checkIfClickedOutside(e) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        !menuIconRef.current.contains(e.target)
+      ) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    window.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => window.removeEventListener('mousedown', checkIfClickedOutside);
+  }, [isMenuOpen]);
+
   return (
     <HeaderStyles>
       <div className="bar">
         <Logo>
-          <Link href="/">History Muffin</Link>
+          <Link href="/">
+            <a onClick={() => setIsMenuOpen(false)}>History Muffin</a>
+          </Link>
         </Logo>
-        <Nav />
+        <Nav
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          menuRef={menuRef}
+          menuIconRef={menuIconRef}
+        />
       </div>
 
       <div className="sub-bar">

@@ -7,11 +7,15 @@ import { useCart } from '../lib/cartState';
 import CartCount from './CartCount';
 import HamburgerImage from '../images/hamburger.png';
 
-export default function Nav() {
+export default function Nav({
+  isMenuOpen,
+  setIsMenuOpen,
+  menuRef,
+  menuIconRef,
+}) {
   const user = useUser();
   const { openCart } = useCart();
   const [mobileMenu, setMobileMenu] = useState();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     function getWindowWidth() {
@@ -28,31 +32,32 @@ export default function Nav() {
     return () => window.removeEventListener('resize', getWindowWidth);
   });
 
+  console.log(isMenuOpen);
+
   return (
     <>
-      <NavStyles menuOpen={menuOpen} mobileMenu={mobileMenu}>
+      <NavStyles isMenuOpen={isMenuOpen} mobileMenu={mobileMenu} ref={menuRef}>
         <Link href="/products">
-          <a onClick={() => setMenuOpen(false)}>Products</a>
+          <a onClick={() => setIsMenuOpen(false)}>Products</a>
         </Link>
         {user && (
           <>
             <Link href="/sell">
-              <a onClick={() => setMenuOpen(false)}>Sell</a>
+              <a onClick={() => setIsMenuOpen(false)}>Sell</a>
             </Link>
             <Link href="/orders">
-              <a onClick={() => setMenuOpen(false)}>Orders</a>
+              <a onClick={() => setIsMenuOpen(false)}>Orders</a>
             </Link>
             <Link href="/account">
-              <a onClick={() => setMenuOpen(false)}>Account</a>
+              <a onClick={() => setIsMenuOpen(false)}>Account</a>
             </Link>
-            <SignOut onClick={() => setMenuOpen(false)} />
+            <SignOut onClick={() => setIsMenuOpen(false)} />
             <button
               type="button"
               onClick={() => {
-                setMenuOpen(false);
+                setIsMenuOpen(false);
                 openCart();
-              }}
-            >
+              }}>
               My Cart
               <CartCount
                 count={user.cart.reduce(
@@ -67,13 +72,16 @@ export default function Nav() {
         {!user && (
           <>
             <Link href="/signin">
-              <a onClick={() => setMenuOpen(false)}>Sign In</a>
+              <a onClick={() => setIsMenuOpen(false)}>Sign In</a>
             </Link>
           </>
         )}
       </NavStyles>
       {mobileMenu && (
-        <Hamburger type="button" onClick={() => setMenuOpen(!menuOpen)}>
+        <Hamburger
+          ref={menuIconRef}
+          type="button"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <HamburgerIcon src={HamburgerImage} />
         </Hamburger>
       )}

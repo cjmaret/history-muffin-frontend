@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 function handleNavDisplay(props) {
   if (props.mobileMenu) {
-    return props.menuOpen ? 'flex' : 'none';
+    return props.isMenuOpen ? 'flex' : 'none';
   }
   return 'flex';
 }
