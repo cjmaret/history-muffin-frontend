@@ -2,11 +2,11 @@
 
 ## Welcome! To get started, go to [historymuffin.com](https://historymuffin.com).
 ### 1. Sign in using a new email
-### 2. Either create new products using "Sell" link, or purchase new products. 
+### 2. Either create new products using "sell" link, or purchase new products. 
 #### To purchase, add items to your Cart, and use Stripe test credit card: 
-#### Stripe card number: 4242424242424242
-#### Exp date: 01/40 (or any future date)
-#### Zip: 11111 (or any five numbers)
+#### - Stripe card number: 4242424242424242
+#### - Exp date: 01/40 (or any future date)
+#### - Zip: 11111 (or any five numbers)
 ### 3. To use the Keystone manager, go to the [Keystone dashboard](https://api.historymuffin.com/). You can manage all your products, and check your orders here.
 
 ---
