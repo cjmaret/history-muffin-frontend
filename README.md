@@ -22,7 +22,8 @@
 ---
 
 ## Links
-### ➡️ [Link to History Muffin API](https://github.com/cjmaret/history-muffin-api)
+### ➡️ [Github Link](https://github.com/cjmaret/history-muffin-frontend)
+### ➡️ [Link to History Muffin API Github](https://github.com/cjmaret/history-muffin-api)
 ### ➡️ [Link to History Muffin Live Site](https://historymuffin.com/)
 
 ---
