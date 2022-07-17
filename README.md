@@ -1,5 +1,7 @@
 # 🧁History Muffin Frontend🧁
 
+---
+
 ## Welcome! To get started, go to [historymuffin.com](https://historymuffin.com).
 ### 1. Sign in using a new email
 ### 2. Either create new products using "sell" link, or purchase new products. 
