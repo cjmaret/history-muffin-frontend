@@ -9,6 +9,8 @@
 #### Zip: 11111 (or any five numbers)
 ### 3. To use the Keystone manager, go to the [Keystone dashboard](https://api.historymuffin.com/). You can manage all your products, and check your orders here.
 
+---
+
 ## Project Description / Functionality: 
 - This part of the project serves as the front-end for [History Muffin API](https://github.com/cjmaret/history-muffin-api)
 - Historymuffin.com is an e-commerce store where users can create an account, purchase products, and sell their own created products.
