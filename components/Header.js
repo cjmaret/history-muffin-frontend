@@ -67,7 +67,7 @@ export default function Header() {
       if (
         menuRef.current &&
         !menuRef.current.contains(e.target) &&
-        !menuIconRef.current.contains(e.target)
+        !menuIconRef.current?.contains(e.target)
       ) {
         setIsMenuOpen(false);
       }
