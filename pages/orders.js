@@ -51,12 +51,17 @@ export default function OrdersPage() {
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorMessage error={error} />;
   const { allOrders } = data;
+
   return (
     <div>
       <Head>
         <title>Your Orders ({allOrders.length}</title>
       </Head>
-      <h2>You have {allOrders.length} orders</h2>
+      <h2>
+        {`You have ${allOrders.length} order${
+          allOrders.length === 1 ? '' : 's'
+        }`}
+      </h2>
       <OrderUl>
         {allOrders.map((order) => (
           <OrderItemStyles>
