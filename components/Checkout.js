@@ -15,11 +15,13 @@ import SickButton from './styles/SickButton';
 import { useCart } from '../lib/cartState';
 
 const CheckoutFormStyles = styled.form`
+  width: 100%;
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 5px;
   padding: 1rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-gap: 1rem;
 `;
 
@@ -73,6 +75,7 @@ function CheckoutForm() {
       },
     });
 
+    console.log(order);
 
     router.push({
       pathname: `/order/[id]`,
@@ -82,7 +85,7 @@ function CheckoutForm() {
     });
 
     closeCart();
-
+    elements.getElement(CardElement).clear();
     setLoading(false);
     nProgress.done();
   }
