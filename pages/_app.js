@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
 import withData from '../lib/withData';
 import { CartStateProvider } from '../lib/cartState';
-
+import Head from 'next/head';
 
 import 'nprogress/nprogress.css';
 import '../components/styles/nprogress.css';
@@ -15,13 +15,18 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, apollo }) {
   return (
-    <ApolloProvider client={apollo}>
-      <CartStateProvider>
-        <Page>
-          <Component {...pageProps} />
-        </Page>
-      </CartStateProvider>
-    </ApolloProvider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <ApolloProvider client={apollo}>
+        <CartStateProvider>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </CartStateProvider>
+      </ApolloProvider>
+    </>
   );
 }
 
