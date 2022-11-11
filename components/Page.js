@@ -5,7 +5,7 @@ import Header from './Header';
 const GlobalStyles = createGlobalStyle`
 
 @font-face {
-  font-family: 'radnika_next';
+  font-family: 'nunito';
   src: url('/static/radnikanext-medium-webfont.woff2')
   format('woff2');
   font-weight: normal;
@@ -13,7 +13,8 @@ const GlobalStyles = createGlobalStyle`
 }
 
   html {
-    --blue: #7ed5ce;
+    --blue: #4bbaf2;
+    --yellow: #fffe6c;
     --black: #393939;
     --grey: #3A3A3A;
     --lightGray: #e1e1e1;
@@ -29,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'radnika_next', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'nunito', --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
@@ -46,7 +47,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    font-family: 'radnika_next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 `;
 

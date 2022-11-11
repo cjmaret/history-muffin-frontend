@@ -5,6 +5,7 @@ const ProductsGroupStyles = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 `;
 
 export default ProductsGroupStyles;

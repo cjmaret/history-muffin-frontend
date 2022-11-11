@@ -10,10 +10,10 @@ const Logo = styled.h1`
   margin-left: 2rem;
   position: relative;
   z-index: 2;
-  background: var(--blue);
-  transform: skew(-7deg);
   a {
-    color: white;
+    font-family: 'Pacifico';
+    color: linear-gradient(blue, yellow);
+    background: linear-gradient(#e66465, #9198e5);
     text-decoration: none;
     text-transform: uppercase;
     padding: 0.5rem 1rem;

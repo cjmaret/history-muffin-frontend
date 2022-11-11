@@ -25,12 +25,15 @@ export const ALL_PRODUCTS_QUERY = gql`
 const ProductsListStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-gap: calc(5vw);
+  grid-gap: calc(2vw);
+  width: 100%;
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   @media (min-width: 1080px) {
-    grid-gap: 54px;
+    grid-gap: 20px;
   }
 `;
-
 
 export default function Products({ page }) {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {

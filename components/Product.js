@@ -1,5 +1,15 @@
 import Link from 'next/link';
-import ItemStyles from './styles/ItemStyles';
+import {
+  ButtonList,
+  ImageContainer,
+  ProductDescription,
+  ProductPrice,
+  ProductTitle,
+  TitleImageContainer,
+  ProductDetails,
+  ProductLink,
+  ProductComponent,
+} from './styles/ProductStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
 import { formatCentsToDollars } from '../lib/formatMoney';
@@ -16,22 +26,29 @@ export default function Product({ product }) {
     return user?.products.some((userProduct) => userProduct.id === product.id);
   }
 
+  console.log(product);
+
   return (
-    <ItemStyles>
-      <div className="title-image-container">
-        <div className="image-container">
-          <img
-            src={product?.photo?.image?.publicUrlTransformed}
-            alt={product.name}
-          />
-        </div>
-        <Title>
-          <Link href={`/product/${product.id}`}>{product.name}</Link>
-        </Title>
-      </div>
-      <PriceTag>{formatCentsToDollars(product.price)}</PriceTag>
-      <p>{product.description}</p>
-      <div className="buttonList">
+    <ProductComponent>
+      {/* <ProductLink href={`/product/${product.id}`} /> */}
+      {/* <TitleImageContainer> */}
+      <ImageContainer>
+        <img
+          src={product?.photo?.image?.publicUrlTransformed}
+          alt={product.name}
+        />
+      </ImageContainer>
+      {/* </TitleImageContainer> */}
+      <ProductDetails>
+        <ProductTitle>{product.name}</ProductTitle>
+        <ProductDescription>
+          {product.description.length > 40
+            ? `${product.description.substring(0, 40)}...`
+            : product.description}
+        </ProductDescription>
+        <ProductPrice>{formatCentsToDollars(product.price)}</ProductPrice>
+      </ProductDetails>
+      {/* <ButtonList>
         <Link
           href={
             doesUserOwnProduct()
@@ -57,7 +74,7 @@ export default function Product({ product }) {
         <DeleteProduct id={product.id} setProductDeleted={setProductDeleted}>
           Delete
         </DeleteProduct>
-      </div>
-    </ItemStyles>
+      </ButtonList> */}
+    </ProductComponent>
   );
 }
