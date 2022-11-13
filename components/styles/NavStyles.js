@@ -119,4 +119,5 @@ export const HamburgerIcon = styled.img`
 export const CartButton = styled.button`
   display: flex;
   align-items: center;
+  color: var(--black);
 `;

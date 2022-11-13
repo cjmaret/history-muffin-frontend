@@ -36,7 +36,7 @@ export default function Nav({
     <>
       <NavStyles isMenuOpen={isMenuOpen} mobileMenu={mobileMenu} ref={menuRef}>
         <Link href="/products">
-          <a onClick={() => setIsMenuOpen(false)}>Products</a>
+          <a onClick={() => setIsMenuOpen(false)}>Shop</a>
         </Link>
         {user && (
           <>
