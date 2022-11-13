@@ -2,13 +2,12 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 
 const Dot = styled.div`
-  background: var(--blue);
-  color: white;
+  color: var(--blue);
   border-radius: 50%;
   padding: 0;
   line-height: 3rem;
-  min-width: 3rem;
-  margin-left: 1rem;
+  min-width: 1rem;
+  margin-left: 0.25rem;
   font-feature-settings: 'tnum';
   font-variant-numeric: tabular-nums;
   @media (max-width: 500px) {
@@ -52,8 +51,7 @@ export default function CartCount({ count }) {
           className="count"
           classNames="count"
           key={count}
-          timeout={{ enter: 400, exit: 400 }}
-        >
+          timeout={{ enter: 400, exit: 400 }}>
           <Dot>{count}</Dot>
         </CSSTransition>
       </TransitionGroup>

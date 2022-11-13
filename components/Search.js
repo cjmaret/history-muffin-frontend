@@ -2,7 +2,7 @@ import { resetIdCounter, useCombobox } from "downshift";
 import gql from "graphql-tag";
 import { useLazyQuery } from "@apollo/client";
 import debounce from "lodash.debounce";
-import { DropDown, DropDownItem, SearchStyles } from "./styles/DropDown";
+import { DropDown, DropDownItem, SearchComponent } from './styles/DropDown';
 import { useRouter } from "next/dist/client/router";
 
 const SEARCH_PRODUCTS_QUERY = gql`
@@ -64,26 +64,25 @@ export default function Search() {
   });
 
   return (
-    <SearchStyles>
+    <SearchComponent>
       <div {...getComboboxProps()} className="search-input-container">
         <input
           {...getInputProps({
-            type: "search",
-            placeholder: "Search for an item",
-            id: "search",
-            className: loading ? "loading" : "",
+            type: 'search',
+            placeholder: 'Search',
+            id: 'search',
+            className: loading ? 'loading' : '',
           })}
         />
       </div>
-      <DropDown {...getMenuProps()}>
+      <DropDown {...getMenuProps()} isOpen={isOpen}>
         {isOpen &&
           items.map((item, index) => (
             <DropDownItem
               key={item.id}
               {...getItemProps({ item: item })}
               highlighted={index === highlightedIndex}
-              href={`/product/${item.id}`}
-            >
+              href={`/product/${item.id}`}>
               <img
                 src={item.photo?.image.publicUrlTransformed}
                 alt={item.name}
@@ -96,6 +95,6 @@ export default function Search() {
           <DropDownItem>Sorry, No items found for {inputValue}</DropDownItem>
         )}
       </DropDown>
-    </SearchStyles>
+    </SearchComponent>
   );
 }

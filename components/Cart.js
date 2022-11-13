@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import CartStyles from './styles/CartStyles';
 import CloseButton from './styles/CloseButton';
 import { useUser } from './User';
-import Supreme from './styles/Supreme';
 import { formatCentsToDollars } from '../lib/formatMoney';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';
@@ -36,10 +35,12 @@ function CartItem({ cartItem }) {
       />
       <div>
         <h3>{product.name}</h3>
-        <p>{formatCentsToDollars(product.price * cartItem.quantity)}</p>
-        <em>
+        <p>Quantity: {cartItem.quantity}</p>
+        <p>Price: {formatCentsToDollars(product.price)}</p>
+        <p>Total: {formatCentsToDollars(product.price * cartItem.quantity)}</p>
+        {/* <em>
           {cartItem.quantity} &times; {formatCentsToDollars(product.price)} each
-        </em>
+        </em> */}
       </div>
       <RemoveFromCart id={cartItem.id} />
     </CartItemStyles>
@@ -65,7 +66,7 @@ export default function Cart() {
   return (
     <CartStyles open={cartOpen} className="cart-styles">
       <header>
-        <Supreme>{me.name}'s Cart</Supreme>
+        <h2>{me.name}'s Cart</h2>
       </header>
       <CloseButton onClick={closeCart}>&times;</CloseButton>
       <ul>
@@ -74,7 +75,7 @@ export default function Cart() {
         ))}
       </ul>
       <footer>
-        <p>{formatCentsToDollars(calcTotalPrice(me.cart))}</p>
+        <p>Total: {formatCentsToDollars(calcTotalPrice(me.cart))}</p>
         <Checkout />
       </footer>
     </CartStyles>

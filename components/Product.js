@@ -30,15 +30,13 @@ export default function Product({ product }) {
 
   return (
     <ProductComponent>
-      {/* <ProductLink href={`/product/${product.id}`} /> */}
-      {/* <TitleImageContainer> */}
+      <ProductLink href={`/product/${product.id}`} />
       <ImageContainer>
         <img
           src={product?.photo?.image?.publicUrlTransformed}
           alt={product.name}
         />
       </ImageContainer>
-      {/* </TitleImageContainer> */}
       <ProductDetails>
         <ProductTitle>{product.name}</ProductTitle>
         <ProductDescription>

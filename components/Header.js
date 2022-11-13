@@ -4,43 +4,51 @@ import Nav from './Nav';
 import Cart from './Cart';
 import Search from './Search';
 import { useEffect, useRef, useState } from 'react';
+import LogoImage from '../images/logo.png';
 
 const Logo = styled.h1`
   font-size: 4rem;
-  margin-left: 2rem;
+  margin: 0 0 0 2rem;
   position: relative;
   z-index: 2;
-  a {
-    font-family: 'Pacifico';
-    color: linear-gradient(blue, yellow);
-    background: linear-gradient(#e66465, #9198e5);
-    text-decoration: none;
-    text-transform: uppercase;
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
+  border-radius: 10px;
+  overflow: hidden;
+  div {
+    display: flex;
+    justify-content: flex-start;
+    transition: opacity 0.4s ease;
+    width: 200px;
+    height: 80px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 0.7;
+      cursor: pointer;
+    }
   }
-  @media screen and (max-width: 1440px) {
-    font-size: 2rem;
-  }
-
-  @media (max-width: 490px) {
-    font-size: 1.5rem;
+  @media screen and (max-width: 950px) {
+    div {
+      width: 100px;
+      height: 40px;
+    }
   }
 `;
 
 const HeaderStyles = styled.header`
+  width: 100%;
   .bar {
-    border-bottom: 10px solid var(--black, black);
-    display: grid;
-    grid-template-columns: auto 1fr;
+    width: 100%;
+    display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
   }
-
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 1px solid var(--black, black);
   }
 `;
 
@@ -83,7 +91,9 @@ export default function Header() {
       <div className="bar">
         <Logo>
           <Link href="/">
-            <a onClick={() => setIsMenuOpen(false)}>History Muffin</a>
+            <div onClick={() => setIsMenuOpen(false)}>
+              <img src={LogoImage} alt="" />
+            </div>
           </Link>
         </Logo>
         <Nav

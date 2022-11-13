@@ -26,7 +26,7 @@ const ProductStyles = styled.div`
     margin-top: 25px;
     & > * {
       border: none;
-      background-color: rgb(126, 213, 206);
+      background-color: var(--blue);
       border-radius: 5px;
       color: white;
       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);

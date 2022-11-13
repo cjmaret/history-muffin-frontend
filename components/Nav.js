@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { NavStyles, Hamburger, HamburgerIcon } from './styles/NavStyles';
+import { NavStyles, Hamburger, HamburgerIcon, CartButton } from './styles/NavStyles';
 import { useUser } from './User';
 import SignOut from './SignOut';
 import { useCart } from '../lib/cartState';
@@ -21,7 +21,7 @@ export default function Nav({
     function getWindowWidth() {
       const windowWidth = window.innerWidth;
 
-      if (windowWidth < 640) {
+      if (windowWidth <= 640) {
         setMobileMenu(true);
       } else {
         setMobileMenu(false);
@@ -50,7 +50,7 @@ export default function Nav({
               <a onClick={() => setIsMenuOpen(false)}>Account</a>
             </Link>
             <SignOut onClick={() => setIsMenuOpen(false)} />
-            <button
+            <CartButton
               type="button"
               onClick={() => {
                 setIsMenuOpen(false);
@@ -64,7 +64,7 @@ export default function Nav({
                   0
                 )}
               />
-            </button>
+            </CartButton>
           </>
         )}
         {!user && (

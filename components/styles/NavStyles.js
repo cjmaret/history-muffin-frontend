@@ -8,11 +8,14 @@ function handleNavDisplay(props) {
 }
 
 export const NavStyles = styled.ul`
-  margin: 0;
+  margin: 0 2rem 0 0;
   padding: 0;
   display: ${(props) => handleNavDisplay(props)};
-  justify-self: end;
-  font-size: 2rem;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+  width: 65%;
+  max-width: 700px;
+  border-radius: 10px;
   a,
   button {
     padding: 1rem 3rem;
@@ -26,29 +29,6 @@ export const NavStyles = styled.ul`
     border: 0;
     white-space: nowrap;
     cursor: pointer;
-    &:before {
-      content: '';
-      width: 2px;
-      background: var(--lightGray);
-      height: 100%;
-      left: 0;
-      position: absolute;
-      transform: skew(-20deg);
-      top: 0;
-      bottom: 0;
-    }
-    &:after {
-      height: 2px;
-      background: var(--blue);
-      content: '';
-      width: 0;
-      position: absolute;
-      transform: translateX(-50%);
-      transition: width 0.4s;
-      transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
-      left: 50%;
-      margin-top: 2rem;
-    }
     &:hover,
     &:focus {
       outline: none;
@@ -59,9 +39,6 @@ export const NavStyles = styled.ul`
     }
   }
   @media (max-width: 1440px) {
-    border-top: 1px solid var(--lightGray);
-    width: 100%;
-    justify-content: flex-end;
     font-size: 1.5rem;
     a,
     button {
@@ -89,11 +66,12 @@ export const NavStyles = styled.ul`
     z-index: 500;
     background-color: white;
     position: absolute;
-    width: 30%;
+    width: 40%;
+    max-width: 120px;
     flex-direction: column;
     align-items: flex-end;
-    right: 5%;
-    top: 67px;
+    right: 1%;
+    top: 40px;
     border: none;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     a,
@@ -117,9 +95,7 @@ export const NavStyles = styled.ul`
 `;
 
 export const Hamburger = styled.button`
-  position: absolute;
-  right: 30px;
-  top: 20px;
+  margin-right: 2rem;
   width: 25px;
   height: 25px;
   padding: 0;
@@ -138,4 +114,9 @@ export const HamburgerIcon = styled.img`
   width: 100%;
   height: 100%;
   background-color: transparent;
+`;
+
+export const CartButton = styled.button`
+  display: flex;
+  align-items: center;
 `;
